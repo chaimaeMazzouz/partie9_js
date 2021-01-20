@@ -4,6 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      label {
+        display: inline-block;
+        min-width: 200px;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <h1>Validation des formulaires en HTML</h1>
+    <form method="post">
+      <label for="prenom">Entrez votre prénom svp:</label>
+      <input type="text" name="prenom" id="prenom" maxlength="20" required />
+      <span id="missPrenom"></span><br />
+      <label for="mail">Entrez votre mail:</label>
+      <input type="email" name="mail" id="mail" required /><br />
+      <label for="tel">Numéro de téléphone:</label>
+      <input type="tel" name="tel" id="tel" required /><br />
+      <input type="submit" value="Valider" id="button_envoi" />
+    </form>
+    <script>
+      var formValid = document.getElementById("button_envoi");
+      var prenom = document.getElementById("prenom");
+      var missPrenom = document.getElementById("missPrenom");
+      var prenomValid = /^[a-zA-éèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-éèîïÉÈÎÏ] [a-zéèêàçîï]+)?$/;
+      formValid.addEventListener("click", validation);
+      function validation(event) {
+        if (prenom.validity.valueMissing) {
+          event.preventDefault();
+          missPrenom.textContent = "Prénom manquant";
+          missPrenom.style.color = "red";
+        } else if (prenomValid.test(prenom.value) == false) {
+          event.preventDefault();
+          missPrenom.textContent = "Format incorrect";
+          missPrenom.style.color = "orange";
+        } else {
+        }
+      }
+    </script>
+  </body>
 </html>
