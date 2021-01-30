@@ -6,16 +6,50 @@
     <title>Document</title>
   </head>
   <body>
-    <input type="email" id="mail" placeholder="Email" required /><br />
-    <input
-      type="password"
-      id="password"
-      placeholder="password"
-      required
-    /><br />
-    <input type="button" value="Envoyer" />
+    <form action="">
+      <input type="email" id="mail" name="email" required placeholder="Email" />
+      <span id="missmail"></span> <br />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="password"
+        required
+      /><span id="misspass"></span><br />
+      <input type="submit" value="Envoyer" id="button_envoi" />
+    </form>
+
     <script>
-      var emailValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      var formValid = document.getElementById("button_envoi");
+      var password = document.getElementById("password");
+      var email = document.getElementById("mail");
+      var missEmail = document.getElementById("missmail");
+      var missPass = document.getElementById("misspass");
+      var emailValid = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,}$/;
+      var passwordValid = /^(?=.*\d)[0-9a-zA-Z]{6,8}$/;
+      formValid.addEventListener("click", validation);
+      function validation(event) {
+        if (password.validity.valueMissing) {
+          event.preventDefault();
+          missPass.textContent = "Password manquant";
+          missPass.style.color = "red";
+        } else if (passwordValid.test(password.value) == false) {
+          event.preventDefault();
+          missPass.textContent = "Format incorrect";
+          missPass.style.color = "orange";
+        } else {
+        }
+        if (email.validity.valueMissing) {
+          event.preventDefault();
+          missEmail.textContent = "Email manquant";
+          missEmail.style.color = "red";
+        } else if (emailValid.test(email.value) == false) {
+          event.preventDefault();
+          missEmail.textContent = "Format incorrect";
+          missEmail.style.color = "orange";
+        } else {
+        }
+      }
     </script>
   </body>
 </html>
