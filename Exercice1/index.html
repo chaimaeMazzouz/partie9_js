@@ -36,7 +36,7 @@
         } else if (passwordValid.test(password.value) == false) {
           event.preventDefault();
           missPass.textContent = "Format incorrect";
-          missPass.style.color = "orange";
+          missPass.style.color = "yellow";
         } else {
         }
         if (email.validity.valueMissing) {
@@ -46,7 +46,7 @@
         } else if (emailValid.test(email.value) == false) {
           event.preventDefault();
           missEmail.textContent = "Format incorrect";
-          missEmail.style.color = "orange";
+          missEmail.style.color = "yellow";
         } else {
         }
       }
